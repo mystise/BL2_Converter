@@ -8,7 +8,7 @@ Note that it is rough around the edges and built to exactly what I needed at the
 
     cargo build
 
-This project was built for Rust version 1.17 Beta in March 2017. While this is the version used to build the project, earlier and later versions will likely work fine. (No promises)
+This project was built for Rust version 1.17 Beta in April 2017. While this is the version used to build the project, earlier and later versions will likely work fine. (No promises)
 
 To install Rust, go to https://www.rust-lang.org/en-US/
 
