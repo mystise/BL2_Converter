@@ -16,7 +16,7 @@ Run through cargo or the executable itself.
 
 Command line options:
 
--f=<file1>,<file2>,... : list of patch files
+-f=\<file1\>,\<file2\>,... : list of patch files
 
 The hotfix is output to stdout, to output to a file use shell stdout redirection.
 
@@ -26,17 +26,19 @@ cargo run -- -f=../hotfixes/UCP_Base.hotfix,../hotfixes/UCP.hotfix,../hotfixes/A
 
 ## Syntax
 
-- start <type> <package?> : Specifies the key and possibly package for the following hotfixes. Applies until the next start command.
+- start \<type\> \<package?\> : Specifies the key and possibly package for the following hotfixes. Applies until the next start command.
 
-- set <object> <path> <value> : Sets the path inside the object to the value. Much like the set command, but with the ability to reference individual elements in an array rather than replacing the entire array at once.
-- set_cmp <object> <path> <compare_value> <value> : Like set, but compares the value to compare_value before setting it to value. (Not confirmed, but it was in the original patches so I left it in. Most of the time you can just use set)
+- set \<object\> \<path\> \<value\> : Sets the path inside the object to the value. Much like the set command, but with the ability to reference individual elements in an array rather than replacing the entire array at once.
+- set_cmp \<object\> \<path\> \<compare_value\> \<value\> : Like set, but compares the value to compare_value before setting it to value. (Not confirmed, but it was in the original patches so I left it in. Most of the time you can just use set)
 
-- <type> : Can be one of OnDemand, Level, or Patch, corresponding to the keys SparkOnDemandPatchEntry, SparkLevelPatchEntry, and SparkPatchEntry respectively.
-- <package?> : Optional package, used for Level and OnDemand, specifies the hotfix to be executed when that package is loaded or reloaded.
-- <object> : An individual object, same syntax as the first element in a set command.
-- <path> : Path inside the object to the variable being set, similar syntax to the second element in a set command, but with additional features such as array indexing using square brackets. (See examples)
-- <compare_value> : The value to compare to, same syntax as the third element in a set command.
-- <value> : The value to set, same syntax as the third element in a set command.
+## Types
+
+- \<type\> : Can be one of OnDemand, Level, or Patch, corresponding to the keys SparkOnDemandPatchEntry, SparkLevelPatchEntry, and SparkPatchEntry respectively.
+- \<package?\> : Optional package, used for Level and OnDemand, specifies the hotfix to be executed when that package is loaded or reloaded.
+- \<object\> : An individual object, same syntax as the first element in a set command.
+- \<path\> : Path inside the object to the variable being set, similar syntax to the second element in a set command, but with additional features such as array indexing using square brackets. (See examples)
+- \<compare_value\> : The value to compare to, same syntax as the third element in a set command.
+- \<value\> : The value to set, same syntax as the third element in a set command.
 
 ## Examples
 
