@@ -47,3 +47,7 @@ Given are the original Gearbox hotfixes as of April 7th 2017, in both the origin
 ## Support
 
 This project is unsupported, use at your own risk. Note that the parser is extremely picky and will crash if you have a syntax error.
+
+## License
+
+This project is licensed under the Apache V2, included in LICENSE-2.0.txt.
