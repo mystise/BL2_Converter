@@ -22,7 +22,7 @@ The hotfix is output to stdout, to output to a file use shell stdout redirection
 
 Example:
 
-cargo run -- -f=../hotfixes/UCP_Base.hotfix,../hotfixes/UCP.hotfix,../hotfixes/Axton.hotfix,../hotfixes/Krieg.hotfix,../hotfixes/Maya.hotfix,../hotfixes/Salvador.hotfix,../hotfixes/Zer0.hotfix,../hotfixes/Gaige.hotfix > test.hotfix
+cargo run -- -f=base_game.patch > base_game.hotfix
 
 ## Syntax
 
