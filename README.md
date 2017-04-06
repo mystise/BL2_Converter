@@ -6,11 +6,15 @@ Note that it is rough around the edges and built to exactly what I needed at the
 
 ## Compilation
 
+    cargo build
+
 This project was built for Rust version 1.17 Beta in March 2017. While this is the version used to build the project, earlier and later versions will likely work fine. (No promises)
 
 To install Rust, go to https://www.rust-lang.org/en-US/
 
 ## Usage
+
+    cargo run -- <options>
 
 Run through cargo or the executable itself.
 
@@ -22,12 +26,11 @@ The hotfix is output to stdout, to output to a file use shell stdout redirection
 
 Example:
 
-cargo run -- -f=base_game.hotfix > base_game.txt
+    cargo run -- -f=base_game.hotfix > base_game.txt
 
 ## Syntax
 
 - start \<type\> \<package?\> : Specifies the key and possibly package for the following hotfixes. Applies until the next start command.
-
 - set \<object\> \<path\> \<value\> : Sets the path inside the object to the value. Much like the set command, but with the ability to reference individual elements in an array rather than replacing the entire array at once.
 - set_cmp \<object\> \<path\> \<compare_value\> \<value\> : Like set, but compares the value to compare_value before setting it to value. (Not confirmed, but it was in the original patches so I left it in. Most of the time you can just use set)
 

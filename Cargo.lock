@@ -1,14 +1,4 @@
 [root]
 name = "converter"
 version = "0.1.0"
-dependencies = [
- "nom 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
-[[package]]
-name = "nom"
-version = "2.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-
-[metadata]
-"checksum nom 2.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "cf51a729ecf40266a2368ad335a5fdde43471f545a967109cd62146ecf8b66ff"
