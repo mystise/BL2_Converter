@@ -27,6 +27,8 @@ The hotfix is output to stdout, to output to a file use shell stdout redirection
 Example:
 
     cargo run -- -f=base_game.hotfix > base_game.txt
+    
+    converter -f=base_game.hotfix > base_game.txt
 
 ## Syntax
 
