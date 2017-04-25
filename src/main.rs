@@ -21,7 +21,7 @@ enum HotfixType {
 
 fn main() {
     let matches = clap_app!(BL2_Converter =>
-                            (version: "0.1")
+                            (version: "1.1")
                             (about: "Converts from *.hotfix files to executable BL2 console commands")
                             (@arg FILE: ... "Files to convert, if empty will take all files named '*.hotfix' in the current folder")
                             (@arg OUTPUT: -o --output +takes_value "File to output to, defaults to 'hotfix_output.txt'")

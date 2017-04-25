@@ -20,7 +20,7 @@ Run through cargo or the executable itself.
 
 Command line options:
 
-BL2_Converter 0.1
+BL2_Converter 1.1
 Converts from *.hotfix files to executable BL2 console commands
 
 USAGE:
