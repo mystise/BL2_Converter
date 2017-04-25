@@ -20,22 +20,22 @@ Run through cargo or the executable itself.
 
 Command line options:
 
-BL2_Converter 1.1
-Converts from *.hotfix files to executable BL2 console commands
+    BL2_Converter 1.1
+    Converts from *.hotfix files to executable BL2 console commands
 
-USAGE:
-    converter [OPTIONS] [FILE]...
+    USAGE:
+        converter [OPTIONS] [FILE]...
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+    FLAGS:
+        -h, --help       Prints help information
+        -V, --version    Prints version information
 
-OPTIONS:
-    -o, --output <OUTPUT>    File to output to, defaults to 'hotfix_output.txt'
+    OPTIONS:
+        -o, --output <OUTPUT>    File to output to, defaults to 'hotfix_output.txt'
 
-ARGS:
-    <FILE>...    Files to convert, if empty will take all files named
-                 '*.hotfix' in the current folder
+    ARGS:
+        <FILE>...    Files to convert, if empty will take all files named
+                     '*.hotfix' in the current folder
 
 Example:
 
