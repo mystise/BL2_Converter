@@ -1,12 +1,9 @@
-use std::env;
-use std::fs::File;
-use std::path::{Path, PathBuf};
-use std::io::{BufRead, BufReader};
+#[macro_use]
+extern crate clap;
 
-fn print_help() {
-    println!("-h : help");
-    println!("-f : files to read, comma separated list");
-}
+use std::fs::{self, File};
+use std::path::Path;
+use std::io::{BufRead, BufReader, Write};
 
 #[derive(Clone)]
 enum ParsedLine {
@@ -23,33 +20,35 @@ enum HotfixType {
 }
 
 fn main() {
-    // Run in folder
-    // Run on folder
-    // Run on files
-    let mut files = None;
-    for arg in env::args() {
-        let arg = arg.split('=').collect::<Vec<&str>>();
-        match arg[0] {
-            "-h" => { // Help
-                print_help();
-                return;
-            },
-            "-f" => { // Files
-                files = Some(arg[1].split(',').map(|x| (Path::new(x).to_path_buf(), File::open(x).expect(&format!("Can't find file: {}", x)))).collect::<Vec<(PathBuf, File)>>());
-            },
-            _ => {
+    let matches = clap_app!(BL2_Converter =>
+                            (version: "0.1")
+                            (about: "Converts from *.hotfix files to executable BL2 console commands")
+                            (@arg FILE: ... "Files to convert, if empty will take all files named '*.hotfix' in the current folder")
+                            (@arg OUTPUT: -o --output +takes_value "File to output to, defaults to 'hotfix_output.txt'")
+    ).get_matches();
+
+    let mut files = Vec::new();
+    if let Some(input_files) = matches.values_of("FILE") {
+        for filename in input_files {
+            files.push((Path::new(filename).to_path_buf(), File::open(filename).expect(&format!("Can't find file: {}", filename))));
+        }
+    } else {
+        for dir_entry in fs::read_dir(".").unwrap().map(|x| x.unwrap()) {
+            if let Some(extension) = dir_entry.path().extension() {
+                if extension.to_str().unwrap() == "hotfix" {
+                    files.push((dir_entry.path(), File::open(dir_entry.path()).expect(&format!("Can't find file: {}", dir_entry.path().file_name().unwrap().to_str().unwrap()))));
+                }
             }
         }
     }
-    if let None = files {
-        print_help();
-        return;
-    }
-    let files = files.unwrap();
-    if files.len() == 0 {
-        print_help();
-        return;
-    }
+
+    let mut output = {
+        if let Some(output) = matches.value_of("OUTPUT") {
+            File::create(output)
+        } else {
+            File::create("hotfix_output.txt")
+        }
+    }.unwrap();
 
     let mut lines = Vec::new();
 
@@ -165,22 +164,21 @@ fn main() {
         }
     }
 
-    print!("set Transient.SparkServiceConfiguration_6 Keys (");
+    write!(output, "set Transient.SparkServiceConfiguration_6 Keys (").unwrap();
     for i in 0..keys.len() {
         if i != 0 {
-            print!(",");
+            write!(output, ",").unwrap();
         }
-        print!("\"{}\"", keys[i]);
+        write!(output, "\"{}\"", keys[i]).unwrap();
     }
-    println!(")");
-    println!("");
-    println!("");
-    print!("set Transient.SparkServiceConfiguration_6 Values (");
+    writeln!(output, ")").unwrap();
+    writeln!(output, "").unwrap();
+    write!(output, "set Transient.SparkServiceConfiguration_6 Values (").unwrap();
     for i in 0..values.len() {
         if i != 0 {
-            print!(",");
+            write!(output, ",").unwrap();
         }
-        print!("\"{}\"", values[i]);
+        write!(output, "\"{}\"", values[i]).unwrap();
     }
-    println!(")");
+    writeln!(output, ")").unwrap();
 }

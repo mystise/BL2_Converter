@@ -20,15 +20,28 @@ Run through cargo or the executable itself.
 
 Command line options:
 
--f=\<file1\>,\<file2\>,... : list of patch files
+BL2_Converter 0.1
+Converts from *.hotfix files to executable BL2 console commands
 
-The hotfix is output to stdout, to output to a file use shell stdout redirection.
+USAGE:
+    converter [OPTIONS] [FILE]...
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -o, --output <OUTPUT>    File to output to, defaults to 'hotfix_output.txt'
+
+ARGS:
+    <FILE>...    Files to convert, if empty will take all files named
+                 '*.hotfix' in the current folder
 
 Example:
 
-    cargo run -- -f=base_game.hotfix > base_game.txt
-    
-    converter -f=base_game.hotfix > base_game.txt
+    cargo run -- base_game.hotfix -o base_game.txt
+
+    converter base_game.hotfix -o base_game.txt
 
 ## Syntax
 
